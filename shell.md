@@ -64,19 +64,31 @@ Markdown 是一种轻量级标记语言，语法简洁直观。
 
 ---
 
-## pwd （Print Work Directory）
+### pwd （Print Work Directory）
 
 查看当前所在的工作目录
 
-open -a "Finder" '/Users/lilin/Code/Notes'
+---
 
-## open
+### open
 
 1. 打开工作目录，macos 在 Finder
 2. 打开应用程序，Wechat open -a 'WeChat'
-3. 打开网页 open 'https://www.baidu.com' open -a 'Safari' 'https://www.baidu.com'
+3. 打开网页 
 
-## ls （list）
+```sh
+open 'https://www.baidu.com' 
+```
+
+```sh
+open -a 'Safari' 'https://www.baidu.com'
+```
+
+```sh
+open -a "Finder" '/Users/lilin/Code/Notes'
+```
+
+### ls （list）
 
 查看当前目录下，有哪些文件或者文件夹
 
@@ -86,7 +98,7 @@ open -a "Finder" '/Users/lilin/Code/Notes'
 
 - ![ls -a 结果解释](./img/ls%20-a%20结果解释.png)
 
-## ls -l
+### ls -l
 
 查看文件和文件夹详情
 
@@ -99,43 +111,79 @@ open -a "Finder" '/Users/lilin/Code/Notes'
 
 查看是不是一个仓库
 
-## mkdir （make directory）
+---
 
+### mkdir （make directory）
 创建一个文件夹
 
-## touch
+---
 
-创建文件 touch filename.md /touch filename.html
+### touch
 
-## echo
+创建文件 
+
+```sh
+touch filename.md
+```
+---
+
+### echo
 
 打印
 
-## echo "\*\*\*" > <文件名>
+---
+
+### >
 
 重定向符号：把输出的内容重定向到一个文件
 
-## cat （concatenate）
+```sh
+echo "\*\*\*" > <文件名>
+# 覆盖前面内容
+```
 
-查看文件内容 （cat ../demo.md）
+```sh
+echo "llll" >> <文件>
+# 会累加内容
+```
+---
 
-## | (echo "llllllll" | cat > in.doc)
+### cat （concatenate）
+
+查看文件内容 
+
+```sh
+cat ../demo.md
+```
+---
+
+### |
 
 管道 ：输出 -> 输入
 
+```sh
+echo "llllllll" | cat > in.doc
+```
+
 只管把输出流入，需要一个命令来拿这个输入，比如 cat
 
-## cd （change directory）
+---
+
+### cd （change directory）
 
 切换目录
 
-## rm （remove）
+---
+
+### rm （remove）
 
 删除文件夹或文件 rm lilin/note.md （同级）
 
-## rm -r
+### rm -r
 
 删掉目录/文件夹
+
+---
 
 ## git
 
@@ -153,15 +201,32 @@ git 仓库就是放代码的地方
 
 ### git add + filename
 
+### git add -A (git add -all)
+
+```sh
+# 提交全部文件
+git add -A
+
+# 提交该目录下全部文件
+git add .
+```
+
 提交到缓冲区，提交冷静期
+
+---
 
 ### git commit -m "备注信息"
 
+```sh
 git commit -m "我写了个 shell.md，把它提交到 git 仓库"
+```
+---
 
 ### git log
 
 查看提交记录
+
+---
 
 ### git branch
 
@@ -187,6 +252,8 @@ git commit -m "我写了个 shell.md，把它提交到 git 仓库"
 
 远程仓库（github）、 无分支 保存代码
 
+---
+
 ### git switch + 分支名
 
 转换到其他分支
@@ -195,18 +262,27 @@ git commit -m "我写了个 shell.md，把它提交到 git 仓库"
 
 创建并转换到其他分支
 
-## git branch + git checkout /
+---
+
+### git branch + git checkout /
 
 创建分支并转到该分支上
 
+---
+
 ### git remote
 
-- 将本地仓库与远程仓库建立连接
-- git remote add <r-github/origin> <git@github.com:Florevia/notes.git/(url)>
+将本地仓库与远程仓库建立连接
+
+```sh
+git remote add <r-github/origin> <git@github.com:Florevia/notes.git/(url)>
+```
 
 ### git remote -v
 
 查看当前git仓库的远程仓库名
+
+---
 
 ### git push
 
@@ -224,6 +300,8 @@ git push -u <remote_repo_name> <branch_name：remote_branch_name>
 
 git push: 并推到远程仓库分支上
 
+---
+
 ### git push （origin） --delete （feature）
 
 删除远程分支
@@ -232,7 +310,55 @@ git push: 并推到远程仓库分支上
 
 检出/转换分支
 
+---
 
 ### git fetch --prune
 
 同步远程分支变化,更新远程列表
+
+---
+
+
+### git clone
+
+往本地拿远程仓库内容
+
+```sh
+git clone -b main --single-branch <repo-url>
+# 只下载（克隆）main 分支
+
+git clone <repo-url>
+# 下载（克隆）所有分支
+```
+---
+
+### git fetch `url`
+
+将远程内容拉到本地
+---
+
+### git rebase origin/main
+
+将远程更新 线性对齐主干（线性）
+
+### git merge origin/main
+
+将远程更新 合并 （有分支）
+
+```sh
+# 同步远程信息（不动工作区）
+git fetch origin
+
+# 切到你的功能分支（若已在则略过）
+git switch feature/login
+
+# 把当前分支变基到远程最新的主干上（或变基到对应的远程跟踪分支）
+git rebase origin/main             
+
+```
+![merge&rebase](./img/merge&rebase.png)
+
+---
+
+
+
