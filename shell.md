@@ -74,10 +74,10 @@ Markdown 是一种轻量级标记语言，语法简洁直观。
 
 1. 打开工作目录，macos 在 Finder
 2. 打开应用程序，Wechat open -a 'WeChat'
-3. 打开网页 
+3. 打开网页
 
 ```sh
-open 'https://www.baidu.com' 
+open 'https://www.baidu.com'
 ```
 
 ```sh
@@ -114,17 +114,19 @@ open -a "Finder" '/Users/lilin/Code/Notes'
 ---
 
 ### mkdir （make directory）
+
 创建一个文件夹
 
 ---
 
 ### touch
 
-创建文件 
+创建文件
 
 ```sh
 touch filename.md
 ```
+
 ---
 
 ### echo
@@ -146,15 +148,17 @@ echo "\*\*\*" > <文件名>
 echo "llll" >> <文件>
 # 会累加内容
 ```
+
 ---
 
 ### cat （concatenate）
 
-查看文件内容 
+查看文件内容
 
 ```sh
 cat ../demo.md
 ```
+
 ---
 
 ### |
@@ -220,6 +224,7 @@ git add .
 ```sh
 git commit -m "我写了个 shell.md，把它提交到 git 仓库"
 ```
+
 ---
 
 ### git log
@@ -232,7 +237,7 @@ git commit -m "我写了个 shell.md，把它提交到 git 仓库"
 
 查看当前分支
 
-### git branch -r            
+### git branch -r
 
 看远程分支列表
 
@@ -280,7 +285,7 @@ git remote add <r-github/origin> <git@github.com:Florevia/notes.git/(url)>
 
 ### git remote -v
 
-查看当前git仓库的远程仓库名
+查看当前 git 仓库的远程仓库名
 
 ---
 
@@ -318,7 +323,6 @@ git push: 并推到远程仓库分支上
 
 ---
 
-
 ### git clone
 
 往本地拿远程仓库内容
@@ -330,20 +334,27 @@ git clone -b main --single-branch <repo-url>
 git clone <repo-url>
 # 下载（克隆）所有分支
 ```
+
 ---
 
 ### git fetch `url`
 
-将远程内容拉到本地
----
+## 将远程内容拉到本地
 
 ### git rebase origin/main
 
 将远程更新 线性对齐主干（线性）
 
+- 例：将A变基到B：
+ git switch A --> git A rebase B
+
 ### git merge origin/main
 
 将远程更新 合并 （有分支）
+
+- 例： 把B合并到A：
+ git switch A --> git A merge B
+ 
 
 ```sh
 # 同步远程信息（不动工作区）
@@ -353,12 +364,20 @@ git fetch origin
 git switch feature/login
 
 # 把当前分支变基到远程最新的主干上（或变基到对应的远程跟踪分支）
-git rebase origin/main             
+git rebase origin/main
 
 ```
+
 ![merge&rebase](./img/merge&rebase.png)
 
 ---
 
+### 对称加密和非对称加密
 
+- 对称加密 (Symmetric)：加密与解密用同一把密钥。
+代表算法：AES（推荐）、ChaCha20、旧的 DES/3DES（不再推荐）。
 
+- 非对称加密 (Asymmetric / 公钥密码学)：用公钥加密/验证，私钥解密/签名。
+代表算法：RSA、ECC（如 P-256、Curve25519）、（以及密钥交换 Diffie-Hellman/ECDH）。
+
+---
